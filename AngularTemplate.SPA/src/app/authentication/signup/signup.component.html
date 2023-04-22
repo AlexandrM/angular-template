@@ -1,0 +1,117 @@
+<div class="auth-container">
+	<div class="row auth-main">
+		<div class="col-sm-6 px-0 d-none d-sm-block">
+			<div class="left-img" style="background-image: url(assets/images/pages/bg-02.png);">
+			</div>
+		</div>
+		<div class="col-sm-6 auth-form-section">
+			<div class="form-section">
+				<div class="auth-wrapper">
+					<h2 class="welcome-msg"> Sign Up </h2>
+					<p class="auth-signup-text text-muted">Enter details to create your account</p>
+					<form class="validate-form" [formGroup]="authForm" (ngSubmit)="onSubmit()">
+						<div class="row">
+							<div class="col-xl-12col-lg-12 col-md-12 col-sm-12 mb-2">
+								<mat-form-field class="example-full-width" appearance="outline">
+									<mat-label>Email</mat-label>
+									<input matInput formControlName="email" required autocomplete="off">
+									<mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>mail</mat-icon>
+									<mat-error *ngIf="authForm.get('email')?.hasError('required') || authForm.get('email')?.touched">
+										Please enter a valid email address
+									</mat-error>
+								</mat-form-field>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xl-12col-lg-12 col-md-12 col-sm-12 mb-2">
+								<mat-form-field class="example-full-width" appearance="outline">
+									<mat-label>Password</mat-label>
+									<input matInput formControlName="password" [type]="hide ? 'password' : 'text'" required autocomplete="off">
+									<a href="#" onClick="return false;" matSuffix (click)="hide = !hide"
+									   [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+										<mat-icon class="material-icons-two-tone color-icon m-3" matSuffix>
+											{{hide ? 'visibility_off' : 'visibility'}}
+										</mat-icon>
+									</a>
+									<mat-error *ngIf="authForm.get('password')?.hasError('required')">
+										Password is required
+									</mat-error>
+								</mat-form-field>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xl-12col-lg-12 col-md-12 col-sm-12 mb-2">
+								<mat-form-field class="example-full-width" appearance="outline">
+									<mat-label>Confirm Password</mat-label>
+									<input matInput formControlName="cpassword" [type]="chide ? 'password' : 'text'" required autocomplete="off">
+									<a href="#" onClick="return false;" matSuffix (click)="chide = !chide"
+									   [attr.aria-label]="'Hide password'" [attr.aria-pressed]="chide">
+										<mat-icon class="material-icons-two-tone color-icon m-3" matSuffix>
+											{{hide ? 'visibility_off' : 'visibility'}}
+										</mat-icon>
+									</a>
+									<mat-error *ngIf="authForm.get('cpassword')?.hasError('required')">
+										Confirm Password is required
+									</mat-error>
+								</mat-form-field>
+							</div>
+						</div>
+						<div class="flex-sb-m w-full  p-b-20" *ngIf="generalError">
+							<div *ngFor="let error of generalError.errors" class="alert alert-danger">
+								{{error.description}}
+							</div>
+						</div>
+						<div class="flex-sb-m w-full  p-b-20">
+							<div>
+								<span>
+									Already Registered?
+									<a routerLink="/authentication/signin">
+										Login
+									</a>
+								</span>
+							</div>
+						</div>
+						<div class="container-auth-form-btn">
+							<button mat-flat-button color="primary" class="auth-form-btn" [disabled]="!authForm.valid " type="submit">
+								Register
+							</button>
+						</div>
+					</form>
+					<h6 class="social-login-title">OR</h6>
+					<ul class="list-unstyled social-icon mb-0 mt-3">
+						<li class="list-inline-item">
+							<a href="javascript:void(0)" class="rounded" (click)="loginAuth0()">
+								<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 135 150">
+									<title>auth0-glyph</title>
+									<path d="M131.225 46.364L116.136 0H67.4l15.06 46.364h48.764zM67.4 0H18.664L3.602 46.364H52.34L67.399 0zM3.602 46.364c-8.982 27.639.856 57.918 24.368 75L43.032 75 3.602 46.364zm127.623 0L91.795 75l15.062 46.364c23.512-17.082 33.35-47.361 24.368-75zm-103.255 75L67.4 150l39.43-28.636L67.4 92.727l-39.43 28.637z" fill="#3c4858"/>
+								</svg>
+							</a>
+						</li>
+						<!--
+						<li class="list-inline-item">
+							<a href="javascript:void(0)" class="rounded">
+								<i class="fab fa-google"></i>
+							</a>
+						</li>
+						<li class="list-inline-item">
+							<a href="javascript:void(0)" class="rounded flex-c-m">
+								<i class="fab fa-facebook-f"></i>
+							</a>
+						</li>
+						<li class="list-inline-item">
+							<a href="javascript:void(0)" class="rounded">
+								<i class="fab fa-twitter"></i>
+							</a>
+						</li>
+						<li class="list-inline-item">
+							<a href="javascript:void(0)" class="rounded">
+								<i class="fab fa-linkedin-in"></i>
+							</a>
+						</li>
+						-->
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

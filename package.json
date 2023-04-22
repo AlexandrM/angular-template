@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "@ngx-loading-bar/router": "^6.0.2",
+    "angular-feather": "^6.5.0",
+    "gulp": "^4.0.2",
+    "ng-apexcharts": "^1.7.4",
+    "ngx-mask": "^14.2.4",
+    "ngx-scrollbar": "^11.0.0"
+  }
+}

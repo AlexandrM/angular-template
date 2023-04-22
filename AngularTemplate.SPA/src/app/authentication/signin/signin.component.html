@@ -1,0 +1,114 @@
+<div class="auth-container">
+	<div class="row auth-main">
+		<div class="col-sm-6 px-0 d-none d-sm-block">
+			<div class="left-img" style="background-image: url(assets/images/pages/bg-01.png);">
+			</div>
+		</div>
+		<div class="col-sm-6 auth-form-section">
+			<div class="form-section">
+				<div class="auth-wrapper">
+					<h2 class="welcome-msg">
+						<div>Welcome to ase.com.ua</div>
+						<div>angular/asp.net core template</div>
+					</h2>
+					<p class="auth-signup-text text-muted">
+						Need an account?
+						<a routerLink="/authentication/signup" class="sign-up-link">
+							Sign Up
+						</a>
+					</p>
+					<h2 class="login-title">Sign in</h2>
+					<form class="validate-form" [formGroup]="authForm" (ngSubmit)="onSubmit()">
+						<div class="row">
+							<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+								<mat-form-field class="example-full-width" appearance="outline">
+									<mat-label>Username</mat-label>
+									<input matInput formControlName="username"/>
+									<mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>face</mat-icon>
+									<mat-error *ngIf="authForm.get('username')?.hasError('required')">
+										Username is required
+									</mat-error>
+								</mat-form-field>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xl-12col-lg-12 col-md-12 col-sm-12 mb-2">
+								<mat-form-field class="example-full-width" appearance="outline">
+									<mat-label>Password</mat-label>
+									<input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+									<a href="#" onClick="return false;" matSuffix (click)="hide = !hide"
+									   [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+										<mat-icon class="material-icons-two-tone color-icon m-3" matSuffix>
+											{{hide ? 'visibility_off' : 'visibility'}}
+										</mat-icon>
+									</a>
+									<mat-error *ngIf="authForm.get('password')?.hasError('required')">
+										Password is required
+									</mat-error>
+								</mat-form-field>
+							</div>
+						</div>
+						<div class="d-flex justify-content-between align-items-center mb-5">
+							<div class="form-check">
+								<label class="form-check-label">
+									<input class="form-check-input" type="checkbox" value=""> Remember me
+									<span class="form-check-sign">
+										<span class="check"></span>
+									</span>
+								</label>
+							</div>
+							<a class="txt1" routerLink="/authentication/forgot-password">Forgot Password?</a>
+						</div>
+
+						<div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+
+						<div class="container-auth-form-btn">
+							<div style="text-align: center">
+								<button mat-raised-button color="primary" [class.auth-spinner]="loading" [disabled]="loading"
+								        class="auth-form-btn" [disabled]="!authForm.valid " type="submit">
+									Login
+								</button>
+							</div>
+						</div>
+					</form>
+					<h6 class="social-login-title">OR</h6>
+					<ul class="list-unstyled social-icon mb-0 mt-3">
+						<li class="list-inline-item">
+							<a href="javascript:void(0)" class="rounded" (click)="loginAuth0()">
+								<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 135 150">
+									<title>auth0-glyph</title>
+									<path d="M131.225 46.364L116.136 0H67.4l15.06 46.364h48.764zM67.4 0H18.664L3.602 46.364H52.34L67.399 0zM3.602 46.364c-8.982 27.639.856 57.918 24.368 75L43.032 75 3.602 46.364zm127.623 0L91.795 75l15.062 46.364c23.512-17.082 33.35-47.361 24.368-75zm-103.255 75L67.4 150l39.43-28.636L67.4 92.727l-39.43 28.637z" fill="#3c4858"/>
+								</svg>
+							</a>
+						</li>
+						<li class="list-inline-item">
+							<!--
+							<a href="javascript:void(0)" class="rounded" (click)="loginGoogle()">
+								<i class="fab fa-google"></i>
+							</a>
+							-->
+							<asl-google-signin-button type="icon" size="medium" width="200" shape="rectangular" theme="filled_black" logo_alignment="center" locale=""></asl-google-signin-button>
+						</li>
+						<!--
+						<li class="list-inline-item">
+							<a href="javascript:void(0)" class="rounded flex-c-m">
+								<i class="fab fa-facebook-f"></i>
+							</a>
+						</li>
+						<li class="list-inline-item">
+							<a href="javascript:void(0)" class="rounded">
+								<i class="fab fa-twitter"></i>
+							</a>
+						</li>
+						<li class="list-inline-item">
+							<a href="javascript:void(0)" class="rounded">
+								<i class="fab fa-linkedin-in"></i>
+							</a>
+						</li>
+						-->
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

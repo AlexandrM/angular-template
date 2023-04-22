@@ -1,0 +1,54 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Remove="logs\**" />
+		<Content Remove="logs\**" />
+		<EmbeddedResource Remove="logs\**" />
+		<None Remove="logs\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Update="appsettings.Production.json" CopyToPublishDirectory="Never" />
+		<Content Update="appsettings.Production.sample.json" CopyToPublishDirectory="Never" />
+		<Content Update="appsettings.Development.json" CopyToPublishDirectory="Never" />
+		<Content Update="appsettings.Development.sample.json" CopyToPublishDirectory="Never" />
+		<Content Update="web.Release.config" CopyToPublishDirectory="Never" />
+
+		<Content Update="appsettings.Production.json">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Content>
+		<Content Remove="wwwroot\index.html" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="wwwroot\index.html" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Auth0.AuthenticationApi" Version="7.17.4" />
+		<PackageReference Include="Auth0.Core" Version="7.17.4" />
+		<PackageReference Include="Auth0.ManagementApi" Version="7.17.4" />
+		<PackageReference Include="Google.Apis.Auth" Version="1.58.0-beta01" />
+		<PackageReference Include="IdentityServer4.AccessTokenValidation" Version="3.0.1" />
+		<PackageReference Include="IdentityServer4.AspNetIdentity" Version="4.1.2" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\AngularTemplate.Core\AngularTemplate.Core.csproj" />
+		<ProjectReference Include="..\AngularTemplate.Data.Models\AngularTemplate.Data.Models.csproj" />
+		<ProjectReference Include="..\AngularTemplate.Data.Repositories\AngularTemplate.Data.Repositories.csproj" />
+		<ProjectReference Include="..\AngularTemplate.DbContext\AngularTemplate.DbContext.csproj" />
+		<ProjectReference Include="..\AngularTemplate.Migration.Postgres\AngularTemplate.Migrations.Postgres.csproj" />
+		<ProjectReference Include="..\AngularTemplate.Migration.Sqlite\AngularTemplate.Migrations.Sqlite.csproj" />
+		<ProjectReference Include="..\AngularTemplate.Services\AngularTemplate.Services.csproj" />
+		<ProjectReference Include="..\AngularTemplate.Shared\AngularTemplate.Shared.csproj" />
+	</ItemGroup>
+
+</Project>

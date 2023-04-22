@@ -1,0 +1,116 @@
+<section class="content">
+	<div class="content-block">
+		<div class="block-header">
+			<!-- breadcrumb -->
+			<app-breadcrumb [title]="'Profile'" [items]="['User']" [active_item]="'Profile'">
+			</app-breadcrumb>
+		</div>
+		<div class="row clearfix">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<div class="card">
+					<div class="header">
+						<h2><strong>User</strong> Profile</h2>
+					</div>
+					<div class="body">
+						<form class="m-4" [formGroup]="form!" (ngSubmit)="onSubmit()">
+							<div class="row">
+								<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+									<mat-form-field class="example-full-width" appearance="fill">
+										<mat-label>Email</mat-label>
+										<input matInput formControlName="email" autocomplete="off">
+										<mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>email</mat-icon>
+									</mat-form-field>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+									<mat-form-field class="example-full-width" appearance="fill">
+										<mat-label>First name</mat-label>
+										<input matInput formControlName="firstName" autocomplete="off">
+										<mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>face</mat-icon>
+										<mat-error *ngIf="form.get('firstName')?.hasError('pattern')">
+											Only characters or numbers allowed
+										</mat-error>
+									</mat-form-field>
+								</div>
+								<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+									<mat-form-field class="example-full-width" appearance="fill">
+										<mat-label>Last name</mat-label>
+										<input matInput formControlName="lastName" autocomplete="off">
+										<mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>face</mat-icon>
+										<mat-error *ngIf="form.get('lastName')?.hasError('pattern')">
+											Only characters or numbers allowed
+										</mat-error>
+									</mat-form-field>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+									<mat-form-field class="example-full-width" appearance="fill">
+										<mat-label>Full name</mat-label>
+										<input matInput formControlName="fullName" autocomplete="off">
+										<mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>face</mat-icon>
+										<mat-error *ngIf="form.get('fullName')?.hasError('whitespace')">
+											Full name is empty
+										</mat-error>
+									</mat-form-field>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+									<button class="btn-space" [disabled]="!form.valid" mat-raised-button color="primary">
+										Submit
+									</button>
+									<button type="button" mat-button>Cancel</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<div class="card">
+					<div class="header">
+						<h2>
+							<strong>Providers</strong>
+						</h2>
+					</div>
+					<div class="body">
+						<div class="row" *ngFor="let provider of providers">
+							<div class="col-md-1">
+								<mat-icon class="material-icons-two-tone color-icon" color="secondary" *ngIf="!provider.isConnected" matSuffix>link</mat-icon>
+								<mat-icon class="material-icons-two-tone color-icon" color="accent" *ngIf="provider.isConnected && !provider.isEmailConfirmed" title="Email not confirmed" matSuffix>email</mat-icon>
+								<mat-icon class="material-icons-two-tone color-icon" color="primary" *ngIf="provider.isConnected && provider.isEmailConfirmed" title="Email confirmed" matSuffix>mark_email_read</mat-icon>
+							</div>
+							<div class="col-md-4">
+								{{provider.name}}
+							</div>
+							<div class="col-md-2">
+								<span class="fl-r" *ngIf="!provider.isConnected">
+									<button color="accent" class="btn-block mw-100-imp"
+									        mat-raised-button
+									        (click)="connect(provider)"
+									        [disabled]="provider.isLoading"
+									        [class.spinner]="provider.isLoading"
+									        type="button">
+										Connect
+									</button>
+								</span>
+								<span class="fl-r" *ngIf="provider.isConnected">
+									<button color="warn" class="btn-block mw-100-imp"
+									        mat-raised-button
+									        (click)="disconnect(provider.provider)"
+									        [disabled]="provider.isLoading"
+									        [class.spinner]="provider.isLoading"
+									        type="button">
+										Disconect
+									</button>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

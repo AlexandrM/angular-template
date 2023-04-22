@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.VisualStudio.JavaScript.Sdk/0.5.62-alpha">
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>b02d9868-26cb-4e98-95d8-7286bf255f89</ProjectGuid>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupCommand>npm start</StartupCommand>
+    <JavaScriptTestFramework>Jasmine</JavaScriptTestFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="src\app\layout\app-layout\" />
+    <Folder Include="src\app\shared\" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptConfiguration Remove="dist\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="dist\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="dist\angular-template\styles.08cfaa5c1b59bc73.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="dist\angular-template\silent-refresh.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="dist\angular-template\runtime.87754ad940103f45.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="dist\angular-template\polyfills.a8a7418bf37e8989.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="dist\angular-template\main.1adfc6f05d66bd98.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="dist\angular-template\index.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="dist\angular-template\favicon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="dist\angular-template\3rdpartylicenses.txt" />
+  </ItemGroup>
+</Project>

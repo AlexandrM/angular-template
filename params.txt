@@ -1,0 +1,4 @@
+publish_folder=_Published
+linux_user=root
+linux_host=192.168.1.215
+linux_folder=/var/www/AngularTemplate
