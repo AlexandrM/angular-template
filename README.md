@@ -52,13 +52,15 @@ Frontend <-> Backend <-> Services <-> Repositories <-> Database
 2. Deploy to Linux
 
 ## Get started
-1. create new project
-*dotnet new angular-template.ase.com.ua -p MyProject*
-2. Build (restore nuget and npm packages)
-3. Run Frontend, in Terminal ".\spa_start.bat" (default http://localhost:4200)
-2. Set startup project to MyProject.Web
-5. Select 'IIS Express', Run Backend (F5)
-6. open in browser http://localhost:4200
+1. install template
+- dotnet new install angular-template.ase.com.ua --nuget-source https://github.com/AlexandrM/angular-template/pkgs/nuget/angular-template.ase.com.ua
+2. create new project
+- dotnet new angular-template.ase.com.ua -p MyProject
+3. Build (restore nuget and npm packages)
+4. Run Frontend, in Terminal ".\spa_start.bat" (default http://localhost:4200)
+5. Set startup project to MyProject.Web
+6. Select 'IIS Express', Run Backend (F5)
+7. open in browser http://localhost:4200
 
 ## Add site to IIS
 1. add
