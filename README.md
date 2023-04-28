@@ -56,14 +56,15 @@ Frontend <-> Backend <-> Services <-> Repositories <-> Database
 
 ## Get started
 1. install template
-- dotnet new install angular-template.ase.com.ua --nuget-source https://github.com/AlexandrM/angular-template/pkgs/nuget/angular-template.ase.com.ua
-2. create new project
+- [download package](https://github.com/AlexandrM/angular-template/releases/tag/template-package)
+- dotnet new install angular-template.ase.com.ua
+3. create new project
 - dotnet new angular-template.ase.com.ua -p MyProject
-3. Build (restore nuget and npm packages)
-4. Run Frontend, in Terminal ".\spa_start.bat" (default http://localhost:4200)
-5. Set startup project to MyProject.Web
-6. Select 'IIS Express', Run Backend (F5)
-7. open in browser http://localhost:4200
+4. Build (restore nuget and npm packages)
+5. Run Frontend, in Terminal ".\spa_start.bat" (default http://localhost:4200)
+6. Set startup project to MyProject.Web
+7. Select 'IIS Express', Run Backend (F5)
+8. open in browser http://localhost:4200
 
 ## Add site to IIS
 1. add
