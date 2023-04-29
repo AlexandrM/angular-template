@@ -9,6 +9,7 @@ import { SocialAuthService } from '@abacritt/angularx-social-login';
 // app
 import { AuthService } from 'src/app/core/service/auth.service';
 import { UnsubscribeOnDestroyAdapter } from 'src/app/shared/UnsubscribeOnDestroyAdapter';
+import { environment } from '../../../environments/environment';
 
 @Component({
 	selector: 'app-signin',
@@ -22,15 +23,23 @@ implements OnInit {
 	loading = false;
 	error?= '';
 	hide = true;
+	allowGoogle: boolean;
+	allowAuth: boolean;
 
 	constructor(
 		private formBuilder: UntypedFormBuilder,
 		private router: Router,
 		private route: ActivatedRoute,
-		private authService: AuthService,
-		//private externalAuthService: SocialAuthService,
+		private authService: AuthService
 	) {
 		super();
+		this.allowGoogle = !!(environment.externalLogins &&
+			environment.externalLogins.google &&
+			environment.externalLogins.google.clientId);
+
+		this.allowAuth = !!(environment.externalLogins &&
+			environment.externalLogins.auth0 &&
+			environment.externalLogins.auth0.clientId);
 	}
 
 	ngOnInit() {

@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { GeneralErrorModel } from '../../core/models/general-error.model';
 import { AuthService } from '../../core/service/auth.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
 	selector: 'app-signup',
@@ -16,6 +17,8 @@ export class SignupComponent implements OnInit {
 	hide = true;
 	chide = true;
 	generalError?: GeneralErrorModel;
+	allowGoogle: boolean;
+	allowAuth: boolean;
 
 	constructor(
 		private formBuilder: UntypedFormBuilder,
@@ -23,7 +26,13 @@ export class SignupComponent implements OnInit {
 		private router: Router,
 		private authService: AuthService
 	) {
+		this.allowGoogle = !!(environment.externalLogins &&
+			environment.externalLogins.google &&
+			environment.externalLogins.google.clientId);
 
+		this.allowAuth = !!(environment.externalLogins &&
+			environment.externalLogins.auth0 &&
+			environment.externalLogins.auth0.clientId);
 	}
 
 	ngOnInit() {
