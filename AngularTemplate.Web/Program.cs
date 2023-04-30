@@ -156,7 +156,7 @@ public class Program
 					LoginReturnUrlParameter = "returnUrl"
 				};
 			})
-			.AddSigningCredential(CreateSigningCredential())
+			.AddSigningCredential(CreateSigningCredential(builder))
 			.AddPersistedGrantStore<PersistedGrantStore>()
 			.AddInMemoryIdentityResources(IdentityServerConfig.GetIdentityResources())
 			.AddInMemoryApiScopes(IdentityServerConfig.GetApiScopes())
@@ -343,9 +343,21 @@ public class Program
 		return host;
 	}
 
-	private static SigningCredentials CreateSigningCredential()
+	private static SigningCredentials CreateSigningCredential(WebApplicationBuilder builder)
 	{
-		var rsaSecurityKey = new RsaSecurityKey(new RSACryptoServiceProvider(2048));
+		var rsa = RSA.Create();
+
+		var webRootPath = builder.Configuration.GetValue<string>(WebHostDefaults.ContentRootKey);
+		var privateKey = File.ReadAllText(Path.Combine(webRootPath, "rsa_key.pem"));
+		privateKey = privateKey
+			.Replace("-----BEGIN RSA PRIVATE KEY-----", string.Empty)
+			.Replace("-----END RSA PRIVATE KEY-----", string.Empty)
+			.Replace(Environment.NewLine, string.Empty);
+
+		var privateKeyBytes = Convert.FromBase64String(privateKey);
+		rsa.ImportRSAPrivateKey(privateKeyBytes, out int _);
+
+		var rsaSecurityKey = new RsaSecurityKey(rsa);
 		var credentials = new SigningCredentials(rsaSecurityKey, SecurityAlgorithms.RsaSha256);
 
 		return credentials;
