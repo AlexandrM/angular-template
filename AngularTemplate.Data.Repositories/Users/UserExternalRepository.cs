@@ -8,12 +8,12 @@ public class UserExternalRepository : AppRepository<UserExternal>, IUserExternal
 {
 	public async Task<int> AddUserExternalAsync(UserExternal userExternal)
 	{
-		return await AddAsync(userExternal);
+		return await AddBaseAsync(userExternal);
 	}
 
 	public int AddUserExternal(UserExternal userExternal)
 	{
-		return Add(userExternal);
+		return AddBase(userExternal);
 	}
 
 	public async Task<int> AddUserExternalsAsync(IEnumerable<UserExternal> claims)
@@ -93,6 +93,6 @@ public class UserExternalRepository : AppRepository<UserExternal>, IUserExternal
 
 	public void RemoveUserExternal(UserExternal userExternal)
 	{
-		Remove(userExternal);
+		RemoveBase(userExternal);
 	}
 }

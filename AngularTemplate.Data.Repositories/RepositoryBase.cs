@@ -39,30 +39,30 @@ public class RepositoryBase<TEntity> where TEntity : class
 	}
 
 
-	protected async Task<TEntity?> GetAsync(Guid id)
+	protected async Task<TEntity?> GetBaseAsync(Guid id)
 	{
 		return await _context.Set<TEntity>().FindAsync(id);
 	}
 
-	protected async Task<int> AddAsync(TEntity entity)
+	protected async Task<int> AddBaseAsync(TEntity entity)
 	{
 		await _context.Set<TEntity>().AddAsync(entity);
 		return await SaveChangesAsync();
 	}
 
-	protected int Add(TEntity entity)
+	protected int AddBase(TEntity entity)
 	{
 		_context.Set<TEntity>().Add(entity);
 		return SaveChanges();
 	}
 
-	protected int Remove(TEntity entity)
+	protected int RemoveBase(TEntity entity)
 	{
 		_context.Set<TEntity>().Remove(entity);
 		return SaveChanges();
 	}
 
-	protected async Task<int> UpdateAsync(TEntity entity)
+	protected async Task<int> UpdateBaseAsync(TEntity entity)
 	{
 		_context.Attach(entity);
 		_context.Entry(entity).State = EntityState.Modified;
@@ -70,7 +70,7 @@ public class RepositoryBase<TEntity> where TEntity : class
 		return await SaveChangesAsync();
 	}
 
-	protected int Update(TEntity entity)
+	protected int UpdateBase(TEntity entity)
 	{
 		_context.Attach(entity);
 		return SaveChanges();

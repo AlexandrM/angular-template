@@ -8,7 +8,7 @@ public class UserRepository : AppRepository<User>, IUserRepository
 {
 	public async Task<User?> GetUserAsync(Guid id)
 	{
-		return await GetAsync(id);
+		return await GetBaseAsync(id);
 	}
 
 	public async Task<User?> GetByUserUserNameAsync(string userName)
@@ -23,11 +23,11 @@ public class UserRepository : AppRepository<User>, IUserRepository
 
 	public async Task<int> AddUserAsync(User user)
 	{
-		return await AddAsync(user);
+		return await AddBaseAsync(user);
 	}
 
 	public async Task<int> UpdateUserAsync(User user)
 	{
-		return await UpdateAsync(user);
+		return await UpdateBaseAsync(user);
 	}
 }
