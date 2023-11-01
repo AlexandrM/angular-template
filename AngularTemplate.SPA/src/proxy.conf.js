@@ -7,7 +7,7 @@ const PROXY_CONFIG = [
 			'/connect',
 			'/weatherforecast',
 		],
-		target: 'https://localhost:9101',
+		target: 'http://localhost:9100',
 		secure: false
 	}
 ];
