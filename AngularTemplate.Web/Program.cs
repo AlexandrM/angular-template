@@ -244,7 +244,19 @@ public class Program
 
 						// set real frontend host
 						globalSettings = ctx.RequestServices.GetRequiredService<GlobalSettings>();
-						globalSettings.Host = GetFrontendHost(ctx);
+
+						var configuration = ctx.RequestServices.GetRequiredService<IConfiguration>();
+						var frontEndHost = configuration.GetValue<string>("FrontEnd:Host");
+						var isDynamicFrontEndHost = frontEndHost.IsMissing();
+						if (!isDynamicFrontEndHost)
+						{
+							globalSettings.Host = frontEndHost;
+						}
+						else
+						{
+							// set real frontend host
+							globalSettings.Host = GetFrontendHost(ctx);
+						}
 
 						// update identity server
 						var options = ctx.RequestServices.GetRequiredService<IdentityServerOptions>();

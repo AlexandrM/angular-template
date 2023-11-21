@@ -380,3 +380,4 @@ package-lock.json
 /.template.config/template.json
 /AngularTemplate.Shared/appsettings.shared.Development.json
 /AngularTemplate.Shared/appsettings.shared.Production.json
+/.editorconfig
